@@ -285,7 +285,8 @@ create(){
 template(){
 	id=$1
 	conteo=$2
-
+	echo "TEMPLATING" $id
+	
 	text='tapBridge.SetAttribute ("DeviceName", StringValue ("tap-$id"));
   	tapBridge.Install (nodes.Get ($conteo), devices.Get ($conteo));'
 
