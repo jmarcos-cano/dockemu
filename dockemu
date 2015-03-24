@@ -300,7 +300,7 @@ start(){
 	sleep $runningTime
 
 	for i in $list;do
-		destroy $i 2>/dev/null
+		destroy $i &>/dev/null
 	done
 
 	# echo "KILLING "
