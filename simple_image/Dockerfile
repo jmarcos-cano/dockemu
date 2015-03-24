@@ -17,7 +17,7 @@ RUN cd bmx6 && make && make install
 ADD supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 ADD supervisor/programs.conf /etc/supervisor/conf.d/programs.conf
 
-CMD "/usr/bin/supervisord -c /etc/supervisor/supervisord.conf -n "
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf" ,"-n "]
 
 
 #CMD ["-t", "BMX6"] 
