@@ -34,15 +34,15 @@ netmask="/8"
 
 
 ### OLSRD DEFAULTS
-olsr_containers= 2
-olsr_network= 10.0.0.0
-olsr_etmask= 255.0.0.0
+olsr_containers=2
+olsr_network=10.0.0.0
+olsr_etmask=255.0.0.0
 
 
 ###BMX6
-bmx6_containers= 2
-bmx6_network= 10.0.0.0
-bmx6_netmask= 255.0.0.0
+bmx6_containers=2
+bmx6_network=10.0.0.0
+bmx6_netmask=255.0.0.0
 
 
 
@@ -275,7 +275,7 @@ start(){
 	type_count=$2
 	### while OLSRD containers
 	echo 
-	echo "#####  $type START  $type_count ##### "
+	echo "#####  $type START  ##### "
 
 	count="0"
 	while [ $count -lt $type_count ]
