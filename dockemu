@@ -321,10 +321,12 @@ start_waf(){
 	echo "RUNNING SIMULATION press CTRL-C to stop it"
 	mv $template_file.cc $waf_path/scratch/tap-csma-virtual-machine-cpy.cc
 
-	$waf_path/./waf build
-	$waf_path/./waf --run tap-csma-virtual-machine-cpy
+	current=$(pwd)
+	cd $waf_path
+	./waf build
+	./waf --run tap-csma-virtual-machine-cpy
 
-
+	cd $current
 }
 
 start(){
