@@ -15,7 +15,7 @@ docker_image="to_dockemu:simple"
 
 
 docker_simple="docker run --privileged -i -t -d --net=none --name docker-$id $docker_image "
-echo $docker_image
+echo $docker_simple
 docker_complex="docker run -v $(pwd)/logs:/var/log  --privileged -d  --net=none --name docker-$id $docker_image "
 
 ## deberian ser leidas del conf file
