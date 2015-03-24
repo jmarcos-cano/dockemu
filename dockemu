@@ -217,13 +217,14 @@ create(){
 		&& ifconfig $bridge up  &>/dev/null
 
 		#echo "outer bridge $bridge created"
-		log "BRIDGES: br: $bridge tap: $tap CREATED $id"
+		log "BRIDGES: br: $bridge tap: $tap CREATED"
 
 		#EL ID DEBERIA TENER TAMBIEN EL TIPO!!!
 		#try
 		{
 			if [ $persistence ];then
-				contain=$(docker run -v  $(pwd)/logs:/var/log/supervisor/ --privileged  -d --net=none --name dockemu-$id $docker_image -t $type)
+				mkdir $(pwd)/logs/$id/
+				contain=$(docker run -v  $(pwd)/logs/$id/:/var/log/supervisor/ --privileged  -d --net=none --name dockemu-$id $docker_image -t $type)
 			else
 				contain=$(docker run --privileged  -d --net=none --name dockemu-$id $docker_image -t $type)
 			fi
