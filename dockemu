@@ -217,13 +217,13 @@ create(){
 		#EL ID DEBERIA TENER TAMBIEN EL TIPO!!!
 		#try
 		{
-		docker run --privileged  -d --net=none --name dockemu-$id $docker_image -t $type
+			docker run --privileged  -d --net=none --name dockemu-$id $docker_image -t $type
 
 
 		#docker run --privileged -i -t -d --net=none --name docker-$id $docker_image -t $type -i $id #&& #2>/dev/null
 		#docker run -v $(pwd)/logs:/var/log  --entrypoint /bin/bash --privileged -d  --net=none --name docker-$id $docker_image  -c "/bin/bash"
 		#echo "DOCKER: docker-$id CREATED"
-		log "DOCKER: docker-$id  ID: $id TYPE: $type CREATED"
+			log "DOCKER: docker-$id  ID: $id TYPE: $type CREATED"
 		}|| # catch
 		{
 			echo "DOCKER issues creating docker-$id"
@@ -240,7 +240,7 @@ create(){
 		ip link set $sideB netns $pid
 		ip netns exec $pid ip link set dev $sideB name eth0
 		ip netns exec $pid ip link set eth0 up
-		ip netns exec $pid ip addr add 10.0.0.$count/8 dev eth0   #network???
+		ip netns exec $pid ip addr add 10.0.0.$count/16 dev eth0   #network???
 		ip link set $sideA up
 
 		#log the name of the container and all interfaces attached to it
