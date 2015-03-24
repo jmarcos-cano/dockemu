@@ -28,7 +28,7 @@ container_log_path=log/
 
 
 config_files_path="conf/"
-template_file="ns3/tap-wifi.j2"
+template_file="ns3/tap-wifi"
 container_expr="container"
 network="10.0.0.0"
 netmask="/8"
@@ -283,9 +283,13 @@ create(){
 
 
 template(){
-	echo "templating cpp"
+	id=$1
+	conteo=$2
 
-	sed "s=nodes.Create(2);=hola=" $template_file 
+	text='tapBridge.SetAttribute ("DeviceName", StringValue ("tap-$id"));
+  	tapBridge.Install (nodes.Get ($conteo), devices.Get ($conteo));'
+
+	sed -i '/running containers/a $text' $template_file
 }
 
 config_reader(){
@@ -326,7 +330,22 @@ start(){
 	done
 
 
-	template
+### TEMAPLATE
+	cp $template_file $template_file.cc
+	sed -i "s=nodes.Create(2);=nodes.Create($olsr_containers);=" $template_file.cc
+	count="0"
+	while [ $count -lt $type_count ]
+	do
+		echo "$type-$count"
+		id=${type}-$count
+		template $id $count
+		count=$[$count+1]
+	done
+
+	
+
+
+
 	start_waf
 
 	echo "WAITING: $runningTime"
