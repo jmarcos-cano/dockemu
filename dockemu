@@ -347,7 +347,7 @@ start(){
 		j=$[$j+1]
 	done
 
-	
+	cat $template_file.cc	
 
 
 
