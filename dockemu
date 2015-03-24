@@ -150,21 +150,21 @@ destroy(){
 	#destroy containers
 	#lxc-destroy -n container-${id}
 	###bridge down
-	ifconfig "br-${id}" down
+	ifconfig "br-${id}" down 2>/dev/null
 	###rm taps from bridges
-	brctl delif br-${id} tap-${id}
+	brctl delif br-${id} tap-${id} 2>/dev/null
 	###destroy the bridges
-	brctl delbr br-${id}
+	brctl delbr br-${id}  2>/dev/null
 	###taps down
-	ifconfig tap-${id} down
+	ifconfig tap-${id} down  2>/dev/null
 	###delete taps
-	tunctl -d tap-${id}
+	tunctl -d tap-${id}  2>/dev/null
 	##delete iplink
-	ip link del $id-A
-	ip link del $id-B
+	ip link del $id-A  2>/dev/null
+	ip link del $id-B  2>/dev/null
 
-	docker kill docker-$id
-	docker rm docker-$id
+	docker kill docker-$id 2>/dev/null
+	docker rm docker-$id  2>/dev/null
 }
 
 
@@ -282,11 +282,13 @@ start(){
 	do
 		echo "$type-$count"
 		id=${type}-$count
-		create $id
+		#create $id
 		count=$[$count+1]
 	done
 
 	echo "WAITING: $runningTime"
+
+
 
 	# echo "KILLING "
 
@@ -299,6 +301,8 @@ start(){
 	# 	count=$[$count+1]
 	# done
 
+	#kill all
+	#docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 }
 
 
