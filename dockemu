@@ -11,7 +11,12 @@
 
 
 containers=0
-docker_image=to_dockemu
+docker_image="to_dockemu"
+
+
+docker_simple="docker run --privileged -i -t -d --net=none --name docker-$id $docker_image "
+docker_complex="docker run -v $(pwd)/logs:/var/log  --privileged -d  --net=none --name docker-$id $docker_image "
+
 ## deberian ser leidas del conf file
 #GENERAL
 waf_path=/home/emulation/repos/ns-3-allinone/ns-3-dev/
@@ -187,7 +192,7 @@ create(){
 		id=$1
 
 		echo $id |tee -a logs/types.log
-		
+		type=$(echo $id |tr "-" " "|awk '{print $1}')
 		
 		### SET VARIABLES
 		bridge="br-${id}"
@@ -212,7 +217,8 @@ create(){
 		#EL ID DEBERIA TENER TAMBIEN EL TIPO!!!
 		#try
 		{
-		docker run --privileged -i -t -d --net=none --name docker-$id $docker_image -t $type -i $id #&& #2>/dev/null
+		docker run --privileged  -d --net=none --name docker-$id $docker_image -t $type
+		#docker run --privileged -i -t -d --net=none --name docker-$id $docker_image -t $type -i $id #&& #2>/dev/null
 		#docker run -v $(pwd)/logs:/var/log  --entrypoint /bin/bash --privileged -d  --net=none --name docker-$id $docker_image  -c "/bin/bash"
 		#echo "DOCKER: docker-$id CREATED"
 		log "DOCKER: docker-$id  ID: $id TYPE: $type CREATED"
@@ -270,9 +276,8 @@ start(){
 	### while OLSRD containers
 	echo 
 	echo "#####  $type START  $type_count ##### "
-	count="0"
-	
 
+	count="0"
 	while [ $count -lt $type_count ]
 	do
 		echo "$type-$count"
@@ -280,6 +285,19 @@ start(){
 		create $id
 		count=$[$count+1]
 	done
+
+	echo "WAITING: $runningTime"
+
+	# echo "KILLING "
+
+	# count="0"
+	# while [ $count -lt $type_count ]
+	# do
+	# 	echo "$type-$count"
+	# 	id=${type}-$count
+	# 	destroy $id
+	# 	count=$[$count+1]
+	# done
 
 }
 
