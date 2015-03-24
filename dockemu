@@ -224,7 +224,7 @@ create(){
 		#try
 		{
 			if  $persistence ;then
-				echo "persistence $persistence"
+				
 				if [ ! -e $(pwd)/logs/$id/ ];then
 					mkdir $(pwd)/logs/$id/
 				fi 
