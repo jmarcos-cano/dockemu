@@ -11,7 +11,7 @@
 
 
 containers=0
-docker_image="to_dockemu"
+docker_image="to_dockemu:simple"
 
 
 docker_simple="docker run --privileged -i -t -d --net=none --name docker-$id $docker_image "
