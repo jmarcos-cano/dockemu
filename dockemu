@@ -285,17 +285,21 @@ start(){
 	echo "#####  $type START  ##### "
 
 	j="0"
+	list=""
 	while [ $j -lt $type_count ]
 	do
 		echo "STARTING: $type-$j"
 		idi=${type}-$j
 		create $idi
 		j=$[$j+1]
+		list=$list "$type-$j "
 	done
 
 	echo "WAITING: $runningTime"
 
-
+	for i in $list;do
+		echo $i
+	done
 
 	# echo "KILLING "
 
