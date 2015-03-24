@@ -326,7 +326,7 @@ start(){
 	#docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 }
 
-
+conf_file=conf/dockemu.bash.conf
 
 if [ $# -gt 0 ] ;then
 	
