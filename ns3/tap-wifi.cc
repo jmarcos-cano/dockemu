@@ -150,15 +150,20 @@ main (int argc, char *argv[])
   tapBridge.SetAttribute ("Mode", StringValue ("UseLocal"));
 
 
-  tapBridge.SetAttribute ("DeviceName", StringValue ("tap-olsrd-1"));
+
+  //running containers
+
+  tapBridge.SetAttribute ("DeviceName", StringValue ("tap-olsrd-0"));
   tapBridge.Install (nodes.Get (0), devices.Get (0));
 
   //
   // Connect the right side tap to the right side wifi device on the right-side
   // ghost node.
   //
-  tapBridge.SetAttribute ("DeviceName", StringValue ("tap-olsrd-0"));
+  tapBridge.SetAttribute ("DeviceName", StringValue ("tap-olsrd-1"));
   tapBridge.Install (nodes.Get (1), devices.Get (1));
+
+
 
   //
   // Run the simulation for ten minutes to give the user time to play around
