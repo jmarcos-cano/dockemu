@@ -353,6 +353,8 @@ start(){
 ### TEMAPLATE
 	cp $template_file $template_file.cc
 	sed -i "s=nodes.Create(2);=nodes.Create($olsr_containers);=" $template_file.cc
+	sed -i "s=Simulator::Stop (Seconds (600.));=Simulator::Stop (Seconds ($runningTime.));="  $template_file.cc
+	
 	j="0"
 	while [ $j -lt $type_count ]
 	do
