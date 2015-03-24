@@ -282,6 +282,8 @@ create(){
 }
 
 
+
+
 template(){
 	id=$1
 	conteo=$2
@@ -291,7 +293,7 @@ template(){
   	tapBridge.Install (nodes.Get ($conteo), devices.Get ($conteo));"
   	echo $text
 
-	sed -i '/running containers/a $text' $template_file.cc
+	sed -i "/running containers/a $text" $template_file.cc
 }
 
 config_reader(){
