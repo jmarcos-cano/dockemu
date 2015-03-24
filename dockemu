@@ -95,6 +95,7 @@ usage(){
 	OPTIONS:
 	    start|--start|-start|-s|--s    <config file>               starts NAET with a config file  :)
 
+		attach 	container-ID										attach to a given container
 
 	    destroy|--destroy|-destroy|-d|--d  <all| containerID>      destroys a containerID or all
 
@@ -117,7 +118,7 @@ usage(){
 #######################
 attach(){
 	id=$1
-	docker attach docker-$id
+	docker exec -it dockemu-$id /bin/bash
 }
 
 
@@ -364,6 +365,15 @@ if [ $# -gt 0 ] ;then
 				exit 0
 			fi
 		;;	
+		attach)
+
+			if [ ! -z $2 ];then
+				attach $2
+			else
+				echo "wrong attach"
+				usage
+			fi
+		;;
 		help|--help|-h|--h|-help)
 				usage
 				;;
