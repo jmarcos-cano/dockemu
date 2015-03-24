@@ -160,22 +160,32 @@ destroy(){
 	###bridge down
 		#docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 	
-	ifconfig "br-${id}" down #2>/dev/null
-	###rm taps from bridges
-	brctl delif "br-${id}" "tap-${id}" #2>/dev/null
-	###destroy the bridges
-	brctl delbr "br-${id}"  #2>/dev/null
-	###taps down
-	ifconfig "tap-${id}" down  #2>/dev/null
-	###delete taps
-	tunctl -d "tap-${id}" # 2>/dev/null
-	##delete iplink
-	ip link del "${id}-A" # 2>/dev/null
-	ip link del "${id}-B"  #2>/dev/null
 
-	docker stop  dockemu-$id #2>/dev/null
-	docker kill dockemu-$id #2>/dev/null
-	docker rm dockemu-$id  #2>/dev/null
+	if [ "$id"== "all" ];then
+		while read line
+		do
+		    name=$line
+		    echo "Text read from file - $name"
+		    destroy $name
+		done < logs/running.log
+	else
+		ifconfig "br-${id}" down #2>/dev/null
+		###rm taps from bridges
+		brctl delif "br-${id}" "tap-${id}" #2>/dev/null
+		###destroy the bridges
+		brctl delbr "br-${id}"  #2>/dev/null
+		###taps down
+		ifconfig "tap-${id}" down  #2>/dev/null
+		###delete taps
+		tunctl -d "tap-${id}" # 2>/dev/null
+		##delete iplink
+		ip link del "${id}-A" # 2>/dev/null
+		ip link del "${id}-B"  #2>/dev/null
+
+		docker stop  dockemu-$id #2>/dev/null
+		docker kill dockemu-$id #2>/dev/null
+		docker rm dockemu-$id  #2>/dev/null
+	fi
 	
 }
 
