@@ -161,7 +161,7 @@ destroy(){
 		#docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 	
 
-	if [ "$id"== "all" ];then
+	if [ "$id" = "all" ];then
 		while read line
 		do
 		    name=$line
