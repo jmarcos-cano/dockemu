@@ -198,7 +198,7 @@ create(){
 
 		id=$1
 
-		echo $id |tee -a logs/types.log
+		echo $id >> logs/types.log
 		#type=$(echo $id |tr "-" " "|awk '{print $1}')
 		
 		### SET VARIABLES
@@ -216,7 +216,7 @@ create(){
 		&& tunctl -t $tap \
 		&& ifconfig $tap 0.0.0.0 promisc up \
 		&& brctl addif $bridge $tap \
-		&& ifconfig $bridge up 
+		&& ifconfig $bridge up  &>/dev/null
 
 		#echo "outer bridge $bridge created"
 		log "BRIDGES: br: $bridge tap: $tap CREATED $id"
