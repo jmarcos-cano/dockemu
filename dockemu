@@ -10,14 +10,7 @@
 
 
 
-#simulate the conf file
-bmx6_containers=2
-bmx_network=
-bmx_netmask=
-olsrd_containers=2
-olsr_network=
-olsr_netmask=
-
+containers=0
 
 ## deberian ser leidas del conf file
 #GENERAL
@@ -33,6 +26,20 @@ template_files_dir="templates/"
 container_expr="container"
 network="10.0.0.0"
 netmask="/8"
+
+
+### OLSRD DEFAULTS
+olsr_containers= 2
+olsr_network= 10.0.0.0
+olsr_etmask= 255.0.0.0
+
+
+###BMX6
+bmx6_containers= 2
+bmx6_network= 10.0.0.0
+bmx6_netmask= 255.0.0.0
+
+
 
 
 if $verbose;then 
@@ -241,6 +248,11 @@ template(){
 
 config_reader(){
 	echo "config reader"
+	conf_file=$1
+	source $conf_file
+
+	# echo $olsr_containers
+	# echo $bmx6_containers
 }
 
 start(){
@@ -271,8 +283,9 @@ if [ $# -gt 0 ] ;then
 					#echo "conf: $conf_file found"
 					#step 1:
 					echo "lets read it"
+					config_reader $conf_file
 					#step 2:
-					start
+					start 
 
 				else
 					echo "conf file: '$conf_file' NOT FOUND"
