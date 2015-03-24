@@ -222,7 +222,7 @@ create(){
 		#EL ID DEBERIA TENER TAMBIEN EL TIPO!!!
 		#try
 		{
-			if [ $persistence ];then
+			if  $persistence ;then
 				echo "persistence $persistence"
 				if [ ! -e $(pwd)/logs/$id/ ];then
 					mkdir $(pwd)/logs/$id/
