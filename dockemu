@@ -357,16 +357,16 @@ start(){
 	# 	destroy $i &>/dev/null
 	# done
 
-	# echo "KILLING "
+	 echo "KILLING "
 
-	# count="0"
-	# while [ $count -lt $type_count ]
-	# do
-	# 	echo "$type-$count"
-	# 	id=${type}-$count
-	# 	destroy $id
-	# 	count=$[$count+1]
-	# done
+	count="0"
+	while [ $count -lt $type_count ]
+	do
+		echo "$type-$count"
+		id=${type}-$count
+		destroy $id
+		count=$[$count+1]
+	done
 
 	#kill all
 	#docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
