@@ -11,7 +11,7 @@
 
 
 containers=0
-
+docker_image=to_dockemu
 ## deberian ser leidas del conf file
 #GENERAL
 waf_path=/home/emulation/repos/ns-3-allinone/ns-3-dev/
@@ -213,7 +213,7 @@ create(){
 		#try
 		{
 		#docker run --privileged -i -t -d --net=none --name docker-$id docker-naet:latest -t $type -i $id && #2>/dev/null
-		docker run -v $(pwd)/logs:/var/log  --entrypoint /bin/bash --privileged -i -t --rm --net=none --name docker-$id docker-naet:latest  -c "/bin/bash"
+		docker run -v $(pwd)/logs:/var/log  --entrypoint /bin/bash --privileged -i -t --rm --net=none --name docker-$id $docker_image  -c "/bin/bash"
 		#echo "DOCKER: docker-$id CREATED"
 		log "DOCKER: docker-$id  ID: $id TYPE: $type CREATED"
 		}|| # catch
