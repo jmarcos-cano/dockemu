@@ -287,8 +287,8 @@ template(){
 	conteo=$2
 	echo "TEMPLATING" $id
 
-	text='tapBridge.SetAttribute ("DeviceName", StringValue ("tap-$id"));
-  	tapBridge.Install (nodes.Get ($conteo), devices.Get ($conteo));'
+	text="tapBridge.SetAttribute ('DeviceName', StringValue ('tap-$id'));
+  	tapBridge.Install (nodes.Get ($conteo), devices.Get ($conteo));"
   	echo $text
 
 	#sed -i '/running containers/a $text' $template_file.cc
