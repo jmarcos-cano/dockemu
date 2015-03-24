@@ -166,9 +166,9 @@ destroy(){
 	ip link del $id-A # 2>/dev/null
 	ip link del $id-B  #2>/dev/null
 
-	docker stop  docker-$id #2>/dev/null
-	docker kill docker-$id #2>/dev/null
-	docker rm docker-$id  #2>/dev/null
+	docker stop  dockemu-$id #2>/dev/null
+	docker kill dockemu-$id #2>/dev/null
+	docker rm dockemu-$id  #2>/dev/null
 	
 }
 
