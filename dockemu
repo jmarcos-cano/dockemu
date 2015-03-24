@@ -201,7 +201,6 @@ destroy(){
 # i.e: olsrd ,  bmx6
 # note: bmx6 or olrsd
 #######################
-rm logs/running.log
 
 count=1
 create(){	
@@ -358,6 +357,8 @@ if [ $# -gt 0 ] ;then
 	case $1 in
 		start|--start|-start|-s|--s)
 			#echo "start"
+			rm logs/running.log
+
 			if [ ! -z $2 ];then
 				conf_file=$2
 				if [ -f $conf_file ];then
