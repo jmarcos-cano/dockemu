@@ -296,6 +296,7 @@ start(){
 	done
 
 	echo "WAITING: $runningTime"
+	sleep $runningTime
 
 	for i in $list;do
 		destroy $i
