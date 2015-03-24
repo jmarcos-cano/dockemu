@@ -291,7 +291,7 @@ template(){
   	tapBridge.Install (nodes.Get ($conteo), devices.Get ($conteo));"
   	echo $text
 
-	#sed -i '/running containers/a $text' $template_file.cc
+	sed -i '/running containers/a $text' $template_file.cc
 }
 
 config_reader(){
@@ -319,6 +319,8 @@ start(){
 	echo 
 	echo "#####  $type START  ##### "
 
+
+### CREATE
 	j="0"
 	list=""
 	while [ $j -lt $type_count ]
@@ -327,21 +329,20 @@ start(){
 		list=$list" $type-$j "
 		idi=${type}-$j
 		create $idi
-		j=$[$j+1]
-		
+		j=$[$j+1]	
 	done
 
 
 ### TEMAPLATE
 	cp $template_file $template_file.cc
 	sed -i "s=nodes.Create(2);=nodes.Create($olsr_containers);=" $template_file.cc
-	count="0"
-	while [ $count -lt $type_count ]
+	j="0"
+	while [ $j -lt $type_count ]
 	do
-		echo "$type-$count"
-		id=${type}-$count
-		template $id $count
-		count=$[$count+1]
+		echo "$type-$j"
+		id=${type}-$j
+		template $id $j
+		j=$[$j+1]
 	done
 
 	
@@ -359,13 +360,13 @@ start(){
 
 	 echo "KILLING "
 
-	count="0"
-	while [ $count -lt $type_count ]
+	j="0"
+	while [ $j -lt $type_count ]
 	do
-		echo "$type-$count"
-		id=${type}-$count
+		echo "$type-$j"
+		id=${type}-$j
 		destroy $id
-		count=$[$count+1]
+		j=$[$j+1]
 	done
 
 	#kill all
