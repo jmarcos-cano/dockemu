@@ -222,7 +222,7 @@ create(){
 		#docker run -v $(pwd)/logs:/var/log  --entrypoint /bin/bash --privileged -d  --net=none --name docker-$id $docker_image  -c "/bin/bash"
 		#echo "DOCKER: docker-$id CREATED"
 		log "DOCKER: docker-$id  ID: $id TYPE: $type CREATED"
-		#}|| # catch
+		}|| # catch
 		{
 			echo "DOCKER issues creating docker-$id"
 			#exit 0
