@@ -152,6 +152,9 @@ main (int argc, char *argv[])
 
 
   //running containers
+$text
+$text
+$text
 
   tapBridge.SetAttribute ("DeviceName", StringValue ("tap-olsrd-1"));
   tapBridge.Install (nodes.Get (0), devices.Get (0));
