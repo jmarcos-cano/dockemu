@@ -282,20 +282,31 @@ create(){
 }
 
 
-
+#######################
+#template()
+#description:
+# templates the CC file
+#######################
 
 template(){
 	id=$1
 	conteo=$2
 	echo "TEMPLATING" $id
 
-	text="tapBridge.SetAttribute ('DeviceName', StringValue ('tap-$id'));
+	text="tapBridge.SetAttribute ('DeviceName', StringValue ('tap-$id')); \n
   	tapBridge.Install (nodes.Get ($conteo), devices.Get ($conteo));"
   	echo $text
 
-	sed -i "/running containers/a $(echo $text)" $template_file.cc
+	sed -i "/running containers/a $(printf $text)" $template_file.cc
 }
 
+
+
+#######################
+#config_reader()
+#description:
+# reads the config file
+#######################
 config_reader(){
 	echo "##### CONFIG READER: ##### "
 	conf_file=$1
