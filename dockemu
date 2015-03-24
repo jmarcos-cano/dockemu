@@ -291,9 +291,8 @@ config_reader(){
 }
 
 start_waf(){
+echo "waf"
 
-
-	
 }
 
 start(){
