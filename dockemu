@@ -203,7 +203,7 @@ create(){
 
 		id=$1
 
-		echo $id >> logs/types.log
+		echo $id > logs/running.log
 		#type=$(echo $id |tr "-" " "|awk '{print $1}')
 		
 		### SET VARIABLES
