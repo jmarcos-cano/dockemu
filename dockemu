@@ -125,7 +125,7 @@ attach(){
 
 list(){
 	echo "AVAILABLE DOCKEMUS"
-	docker ps |grep dockemu|awk '{print $10}'
+	docker ps |grep dockemu|awk '{print $(NF)}'
 }
 
 #######################
