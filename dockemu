@@ -153,22 +153,22 @@ destroy(){
 		#docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 	
 
-	ifconfig "br-${id}" down 2>/dev/null
+	ifconfig "br-${id}" down #2>/dev/null
 	###rm taps from bridges
-	brctl delif br-${id} tap-${id} 2>/dev/null
+	brctl delif br-${id} tap-${id} #2>/dev/null
 	###destroy the bridges
-	brctl delbr br-${id}  2>/dev/null
+	brctl delbr br-${id}  #2>/dev/null
 	###taps down
-	ifconfig tap-${id} down  2>/dev/null
+	ifconfig tap-${id} down  #2>/dev/null
 	###delete taps
-	tunctl -d tap-${id}  2>/dev/null
+	tunctl -d tap-${id} # 2>/dev/null
 	##delete iplink
-	ip link del $id-A  2>/dev/null
-	ip link del $id-B  2>/dev/null
+	ip link del $id-A # 2>/dev/null
+	ip link del $id-B  #2>/dev/null
 
-	docker stop  docker-$id 2>/dev/null
-	docker kill docker-$id 2>/dev/null
-	docker rm docker-$id  2>/dev/null
+	docker stop  docker-$id #2>/dev/null
+	docker kill docker-$id #2>/dev/null
+	docker rm docker-$id  #2>/dev/null
 	
 }
 
