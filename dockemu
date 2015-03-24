@@ -287,7 +287,6 @@ create(){
 #description:
 # templates the CC file
 #######################
-
 template(){
 	id=$1
 	conteo=$2
@@ -295,8 +294,7 @@ template(){
 
 	text="tapBridge.SetAttribute ('DeviceName', StringValue ('tap-$id')); \n
   	tapBridge.Install (nodes.Get ($conteo), devices.Get ($conteo));"
-  	echo $text
-
+  	#echo $text
 	sed -i "/running containers/a $(echo $text)" $template_file.cc
 }
 
@@ -335,7 +333,6 @@ start(){
 	echo 
 	echo "#####  $type START  ##### "
 
-
 ### CREATE
 	j="0"
 	list=""
@@ -362,8 +359,6 @@ start(){
 	done
 
 	
-
-
 
 	start_waf
 
