@@ -244,10 +244,15 @@ config_reader(){
 
 start(){
 	i=2
-	for machine in {0..};do
-		echo $machine
 
+	count="0"
+
+	while [ $count -lt $i ]
+	do
+		echo $count
+		count=$[$count+1]
 	done
+
 
 }
 
