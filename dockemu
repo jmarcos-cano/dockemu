@@ -203,7 +203,7 @@ create(){
 		#echo $bridge $tap $sideB $sideA
 		
 		#make sure everything is destroyed before creating it.
-		destroy docker-${id} &>/dev/null
+		destroy $id &>/dev/null
 		### CREATE OUTER BRIDGES
 		brctl addbr $bridge \
 		&& tunctl -t $tap \
