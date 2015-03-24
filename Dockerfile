@@ -14,8 +14,8 @@ RUN git clone git://qmp.cat/bmx6.git
 RUN cd bmx6 && make && make install
 
 
-ADD files/docker-naet.sh /
-RUN chmod +x /docker-naet.sh
+ADD files/dockemu-launch.sh /
+RUN chmod +x /dockemu-launch.sh
 ENTRYPOINT [ "/dockemu-launch.sh" ]
 
 

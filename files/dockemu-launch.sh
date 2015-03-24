@@ -28,7 +28,7 @@ wait_interface(){
 
 usage(){
 cat <<-ENDOFMESSAGE
-			usage: docker run <options> docker_image_name  [OPTION...] 
+			usage: docker run <options> to_dockemu  [OPTION...] 
 
 			        OPTIONS:
 			                -t <type>:      start a container type. 
