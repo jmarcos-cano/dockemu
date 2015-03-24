@@ -177,6 +177,7 @@ create(){
 			id=$1
 		fi
 
+		echo $id >> logs/types.log
 		#id=$1
 		### SET VARIABLES
 		bridge="br-${id}"
