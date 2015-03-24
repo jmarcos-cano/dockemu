@@ -192,7 +192,7 @@ create(){
 		id=$1
 
 		echo $id |tee -a logs/types.log
-		type=$(echo $id |tr "-" " "|awk '{print $1}')
+		#type=$(echo $id |tr "-" " "|awk '{print $1}')
 		
 		### SET VARIABLES
 		bridge="br-${id}"
@@ -200,7 +200,7 @@ create(){
 		sideA="$id-A"
 		sideB="$id-B"
 		
-		echo $bridge $tap $sideB $sideA
+		#echo $bridge $tap $sideB $sideA
 		
 		#make sure everything is destroyed before creating it.
 		destroy docker-$id &>/dev/null
