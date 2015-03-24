@@ -364,7 +364,7 @@ if [ $# -gt 0 ] ;then
 			#echo destroy
 			if [ ! -z $2 ];then
 				echo "destroy"
-
+				destroy $2
 
 			else
 				echo "[ERROR] destroy all or a specific ID?"
