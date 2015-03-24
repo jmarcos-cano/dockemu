@@ -212,8 +212,8 @@ create(){
 		# fi
 
 		id=$1
-
-		echo $id > logs/running.log
+		rm logs/running.log
+		echo $id >> logs/running.log
 		#type=$(echo $id |tr "-" " "|awk '{print $1}')
 		
 		### SET VARIABLES
