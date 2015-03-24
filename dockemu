@@ -251,7 +251,7 @@ create(){
 		#log the name of the container and all interfaces attached to it
 
 		## if everything went ok count++
-		log "NETWORK inside DOCKER: dockemu-$id IP:10.0.0.$count/8    CREATED and ATTACHED to BRIDGES"
+		log "NETWORK inside DOCKER: dockemu-$id IP:10.0.0.$count/8    CREATED & ATTACHED TO BRIDGES"
 		count=$((count +1 ))
 		log ""
 
@@ -292,7 +292,7 @@ start(){
 		idi=${type}-$j
 		create $idi
 		j=$[$j+1]
-		list=$list "$type-$j "
+		list=$list" $type-$j "
 	done
 
 	echo "WAITING: $runningTime"
