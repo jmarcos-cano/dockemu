@@ -290,7 +290,7 @@ create(){
 template(){
 	id=$1
 	conteo=$2
-	echo "TEMPLATING" $id
+	#echo "TEMPLATING" $id
 
 	text="tapBridge.SetAttribute ('DeviceName', StringValue ('tap-$id')); \n
   	tapBridge.Install (nodes.Get ($conteo), devices.Get ($conteo));"
@@ -352,7 +352,7 @@ start(){
 	j="0"
 	while [ $j -lt $type_count ]
 	do
-		echo "$type-$j"
+		echo "TEMPLATING: $type-$j"
 		id=${type}-$j
 		template $id $j
 		j=$[$j+1]
@@ -374,7 +374,7 @@ start(){
 	j="0"
 	while [ $j -lt $type_count ]
 	do
-		echo "$type-$j"
+		echo "KILLING: $type-$j"
 		id=${type}-$j
 		destroy $id
 		j=$[$j+1]
