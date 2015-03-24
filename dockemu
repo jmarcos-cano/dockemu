@@ -146,25 +146,32 @@ log(){
 #######################
 destroy(){
 
+
+
 	id=$1
 	#destroy containers
 	#lxc-destroy -n container-${id}
 	###bridge down
-	ifconfig "br-${id}" down 2>/dev/null
-	###rm taps from bridges
-	brctl delif br-${id} tap-${id} 2>/dev/null
-	###destroy the bridges
-	brctl delbr br-${id}  2>/dev/null
-	###taps down
-	ifconfig tap-${id} down  2>/dev/null
-	###delete taps
-	tunctl -d tap-${id}  2>/dev/null
-	##delete iplink
-	ip link del $id-A  2>/dev/null
-	ip link del $id-B  2>/dev/null
+	if [ $id == "all" ];then{
+		docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+	}
+	else{
+		ifconfig "br-${id}" down 2>/dev/null
+		###rm taps from bridges
+		brctl delif br-${id} tap-${id} 2>/dev/null
+		###destroy the bridges
+		brctl delbr br-${id}  2>/dev/null
+		###taps down
+		ifconfig tap-${id} down  2>/dev/null
+		###delete taps
+		tunctl -d tap-${id}  2>/dev/null
+		##delete iplink
+		ip link del $id-A  2>/dev/null
+		ip link del $id-B  2>/dev/null
 
-	docker kill docker-$id 2>/dev/null
-	docker rm docker-$id  2>/dev/null
+		docker kill docker-$id 2>/dev/null
+		docker rm docker-$id  2>/dev/null
+	}
 }
 
 
