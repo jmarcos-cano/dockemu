@@ -15,7 +15,7 @@ docker_image="to_dockemu:simple"
 
 
 docker_simple="docker run --privileged -i -t -d --net=none --name docker-$id $docker_image "
-echo $docker_simple
+#echo $docker_simple
 docker_complex="docker run -v $(pwd)/logs:/var/log  --privileged -d  --net=none --name docker-$id $docker_image "
 
 ## deberian ser leidas del conf file
@@ -228,9 +228,9 @@ create(){
 				if [ ! -e $(pwd)/logs/$id/ ];then
 					mkdir $(pwd)/logs/$id/
 				fi 
-				contain=$(docker run -v  $(pwd)/logs/$id/:/var/log/supervisor/ --privileged  -d --net=none --name dockemu-$id $docker_image -t $type)
+				contain=$(docker run -v  $(pwd)/logs/$id/:/var/log/supervisor/ --privileged  -d --net=none --name dockemu-$id $docker_image 
 			else
-				contain=$(docker run --privileged  -d --net=none --name dockemu-$id $docker_image -t $type)
+				contain=$(docker run --privileged  -d --net=none --name dockemu-$id $docker_image 
 			fi
 
 		#docker run --privileged -i -t -d --net=none --name docker-$id $docker_image -t $type -i $id #&& #2>/dev/null
