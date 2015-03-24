@@ -177,20 +177,25 @@ destroy(){
 count=1
 create(){	
 		#read -p ""
-		type=$2
-		if [ ! -z "$type" ];then	
-			id=$type-$1
-		else
-			id=$1
-		fi
+		# type=$2
+		# if [ ! -z "$type" ];then	
+		# 	id=$type-$1
+		# else
+		# 	id=$1
+		# fi
 
-		echo $id >> logs/types.log
-		#id=$1
+		id=$1
+
+		echo $id |tee -a logs/types.log
+		
+		
 		### SET VARIABLES
 		bridge="br-${id}"
 		tap="tap-${id}"
 		sideA="$id-A"
 		sideB="$id-B"
+		
+		echo $bridge $tap $sideB $sideA
 		
 		#make sure everything is destroyed before creating it.
 		destroy $id &>/dev/null
@@ -247,25 +252,34 @@ template(){
 }
 
 config_reader(){
-	echo "config reader"
+	echo "##### CONFIG READER: ##### "
 	conf_file=$1
 	source $conf_file
 
-	# echo $olsr_containers
-	# echo $bmx6_containers
+	lista=$(cat $conf_file|grep -v "#" )
+	for i in $lista;do
+		echo $i
+	done
+
 }
 
 start(){
-	i=2
-
+	
+	type=$1
+	type_count=$2
+	### while OLSRD containers
+	echo 
+	echo "#####  $type START  $type_count ##### "
 	count="0"
+	
 
-	while [ $count -lt $i ]
+	while [ $count -lt $type_count ]
 	do
-		echo $count
+		echo "$type-$count"
+		id=${type}-$count
+		create $id
 		count=$[$count+1]
 	done
-
 
 }
 
@@ -282,10 +296,10 @@ if [ $# -gt 0 ] ;then
 				if [ -f $conf_file ];then
 					#echo "conf: $conf_file found"
 					#step 1:
-					echo "lets read it"
+					#echo "lets read it"
 					config_reader $conf_file
 					#step 2:
-					start 
+					start olsrd $olsr_containers
 
 				else
 					echo "conf file: '$conf_file' NOT FOUND"
