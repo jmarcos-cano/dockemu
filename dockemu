@@ -217,7 +217,7 @@ create(){
 		#EL ID DEBERIA TENER TAMBIEN EL TIPO!!!
 		#try
 		{
-			docker run --privileged  -d --net=none --name dockemu-$id $docker_image -t $type
+			contain=$(docker run --privileged  -d --net=none --name dockemu-$id $docker_image -t $type)
 
 
 		#docker run --privileged -i -t -d --net=none --name docker-$id $docker_image -t $type -i $id #&& #2>/dev/null
