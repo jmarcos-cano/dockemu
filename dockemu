@@ -307,9 +307,9 @@ start(){
 	echo "WAITING: $runningTime"
 	sleep $runningTime
 
-	for i in $list;do
-		destroy $i &>/dev/null
-	done
+	# for i in $list;do
+	# 	destroy $i &>/dev/null
+	# done
 
 	# echo "KILLING "
 

@@ -99,7 +99,7 @@ main (int argc, char *argv[])
   // the right side.
   //
   NodeContainer nodes;
-  nodes.Create (2);
+  nodes.Create(2);
 
   //
   // We're going to use 802.11 A so set up a wifi helper to reflect that.
@@ -148,14 +148,16 @@ main (int argc, char *argv[])
   //
   TapBridgeHelper tapBridge;
   tapBridge.SetAttribute ("Mode", StringValue ("UseLocal"));
-  tapBridge.SetAttribute ("DeviceName", StringValue ("tap-left"));
+
+
+  tapBridge.SetAttribute ("DeviceName", StringValue ("tap-olsrd-1"));
   tapBridge.Install (nodes.Get (0), devices.Get (0));
 
   //
   // Connect the right side tap to the right side wifi device on the right-side
   // ghost node.
   //
-  tapBridge.SetAttribute ("DeviceName", StringValue ("tap-right"));
+  tapBridge.SetAttribute ("DeviceName", StringValue ("tap-olsrd-0"));
   tapBridge.Install (nodes.Get (1), devices.Get (1));
 
   //
