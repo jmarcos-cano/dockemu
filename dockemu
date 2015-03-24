@@ -203,7 +203,7 @@ create(){
 		#echo $bridge $tap $sideB $sideA
 		
 		#make sure everything is destroyed before creating it.
-		destroy docker-$id &>/dev/null
+		destroy docker-${id} &>/dev/null
 		### CREATE OUTER BRIDGES
 		brctl addbr $bridge \
 		&& tunctl -t $tap \
@@ -212,14 +212,14 @@ create(){
 		&& ifconfig $bridge up 
 
 		#echo "outer bridge $bridge created"
-		log "BRIDGES: br: $bridge tap: $tap CREATED"
+		log "BRIDGES: br: $bridge tap: $tap CREATED $id"
 
 		#EL ID DEBERIA TENER TAMBIEN EL TIPO!!!
 		#try
 		{
 		#docker run --privileged  -d --net=none --name docker-$id $docker_image -t $type
 
-		
+
 		#docker run --privileged -i -t -d --net=none --name docker-$id $docker_image -t $type -i $id #&& #2>/dev/null
 		#docker run -v $(pwd)/logs:/var/log  --entrypoint /bin/bash --privileged -d  --net=none --name docker-$id $docker_image  -c "/bin/bash"
 		#echo "DOCKER: docker-$id CREATED"
