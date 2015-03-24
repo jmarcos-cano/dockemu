@@ -216,17 +216,17 @@ create(){
 
 		#EL ID DEBERIA TENER TAMBIEN EL TIPO!!!
 		#try
-		#{
-		docker run --privileged  -d --net=none --name docker-$id $docker_image -t $type
+		{
+		#docker run --privileged  -d --net=none --name docker-$id $docker_image -t $type
 		#docker run --privileged -i -t -d --net=none --name docker-$id $docker_image -t $type -i $id #&& #2>/dev/null
 		#docker run -v $(pwd)/logs:/var/log  --entrypoint /bin/bash --privileged -d  --net=none --name docker-$id $docker_image  -c "/bin/bash"
 		#echo "DOCKER: docker-$id CREATED"
 		log "DOCKER: docker-$id  ID: $id TYPE: $type CREATED"
 		#}|| # catch
-		#{
+		{
 			echo "DOCKER issues creating docker-$id"
 			#exit 0
-		#}
+		}
 		
 
 		pid=$(docker inspect -f '{{.State.Pid}}' docker-${id} )
