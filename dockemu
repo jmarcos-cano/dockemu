@@ -201,6 +201,8 @@ destroy(){
 # i.e: olsrd ,  bmx6
 # note: bmx6 or olrsd
 #######################
+rm logs/running.log
+
 count=1
 create(){	
 		#read -p ""
@@ -212,7 +214,6 @@ create(){
 		# fi
 
 		id=$1
-		rm logs/running.log
 		echo $id >> logs/running.log
 		#type=$(echo $id |tr "-" " "|awk '{print $1}')
 		
