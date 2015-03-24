@@ -320,7 +320,10 @@ config_reader(){
 }
 
 start_waf(){
-echo "waf"
+	echo "waf"
+	mv $template_file.cc $waf_path/scratch/tap-csma-virtual-machine-cpy.cc
+
+
 
 }
 
@@ -358,7 +361,7 @@ start(){
 		j=$[$j+1]
 	done
 
-	cat $template_file.cc	
+	
 
 
 
