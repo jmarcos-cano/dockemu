@@ -95,7 +95,7 @@ usage(){
 	OPTIONS:
 	    start|--start|-start|-s|--s    <config file>               starts NAET with a config file  :)
 
-		attach 	container-ID										attach to a given container
+        attach 	container-ID										attach to a given container
 
 	    destroy|--destroy|-destroy|-d|--d  <all| containerID>      destroys a containerID or all
 
