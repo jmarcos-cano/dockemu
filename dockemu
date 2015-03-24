@@ -222,8 +222,11 @@ create(){
 		#EL ID DEBERIA TENER TAMBIEN EL TIPO!!!
 		#try
 		{
-			contain=$(docker run --privileged  -d --net=none --name dockemu-$id $docker_image -t $type)
-
+			if [ $persistence ];then
+				contain=$(docker run -v  $(pwd)/logs:/var/log/supervisor/ --privileged  -d --net=none --name dockemu-$id $docker_image -t $type)
+			else
+				contain=$(docker run --privileged  -d --net=none --name dockemu-$id $docker_image -t $type)
+			fi
 
 		#docker run --privileged -i -t -d --net=none --name docker-$id $docker_image -t $type -i $id #&& #2>/dev/null
 		#docker run -v $(pwd)/logs:/var/log  --entrypoint /bin/bash --privileged -d  --net=none --name docker-$id $docker_image  -c "/bin/bash"
