@@ -280,7 +280,7 @@ start(){
 	count="0"
 	while [ $count -lt $type_count ]
 	do
-		echo "$type-$count"
+		echo "STARTING: $type-$count"
 		id=${type}-$count
 		create $id
 		count=$[$count+1]
