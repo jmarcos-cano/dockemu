@@ -7,7 +7,7 @@ RUN apt-get install -y iperf olsrd
 RUN apt-get install -y git-core 
 RUN apt-get install -y make
 RUN  apt-get update 
-RUN apt-get install -y build-essential supervisor  gcc
+RUN apt-get install -y build-essential supervisor nmap gcc
 
 ## SINTALL BMX6
 RUN git clone git://qmp.cat/bmx6.git
