@@ -223,7 +223,9 @@ create(){
 		#try
 		{
 			if [ $persistence ];then
-				mkdir $(pwd)/logs/$id/
+				if [ ! -e $(pwd)/logs/$id/ ];then
+					mkdir $(pwd)/logs/$id/
+				fi
 				contain=$(docker run -v  $(pwd)/logs/$id/:/var/log/supervisor/ --privileged  -d --net=none --name dockemu-$id $docker_image -t $type)
 			else
 				contain=$(docker run --privileged  -d --net=none --name dockemu-$id $docker_image -t $type)
