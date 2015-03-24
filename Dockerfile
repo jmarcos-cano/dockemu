@@ -16,7 +16,9 @@ RUN cd bmx6 && make && make install
 
 ADD files/docker-naet.sh /
 RUN chmod +x /docker-naet.sh
-ENTRYPOINT [ "/docker-naet.sh" ]
+ENTRYPOINT [ "/dockemu-launch.sh" ]
+
+
 #CMD ["-t", "BMX6"] 
 
 #./bmx6 debug=0 dev=eth0
